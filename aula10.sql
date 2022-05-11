@@ -12,8 +12,9 @@ select c.customerName, e.firstName from employees as e inner join customers as c
 
 select c.customerName from customers as c inner join payments as p on c.customerNumber = p.customerNumber where p.amount> 1000;
 
-select c.customerName, c.state from customers as c inner join orders as o on c.customerNumber = o.customerNumber where o.shippedDate <'2005-04-30' order by c.state;
+select count(c.customerName), c.state from customers as c inner join orders as o on c.customerNumber = o.customerNumber where o.shippedDate <'2005-04-30' group by c.state;
 
 select o.orderNumber from orderdetails as o inner join products as p on o.productCode = p.productCode where p.productDescription like "%train%" order by o.orderNumber desc;
 
-select c.customerName, o.city from employees as e inner join customers as c inner join offices as o on   e.employeeNumber = c.salesRepEmployeeNumber and e.officeCode = o.officeCode where o.country='USA' order by c.customerName;
+select count(c.customerName), o.city from employees as e inner join customers as c inner join offices as o on   e.employeeNumber = c.salesRepEmployeeNumber and e.officeCode = o.officeCode where o.country='USA' group by o.city;
+
